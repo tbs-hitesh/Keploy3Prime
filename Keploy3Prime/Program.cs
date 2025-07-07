@@ -43,6 +43,13 @@ app.MapPost("/reverse", (InputText input) =>
     return new { Original = input.Text, Reversed = reversed };
 });
 
+
+//4. Query parameter: /subtract?a=10&b=3
+app.MapGet("/subtract", (int a, int b) =>
+{
+    return new { Sum = a - b };
+});
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
