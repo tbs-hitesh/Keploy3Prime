@@ -24,9 +24,31 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 });
 
+// 1. Route parameter: /greet/{name}
+app.MapGet("/greet/{name}", (string name) =>
+{
+    return $"Hello, {name}!";
+});
+
+// 2. Query parameter: /add?a=5&b=7
+app.MapGet("/add", (int a, int b) =>
+{
+    return new { Sum = a + b };
+});
+
+// 3. Request body (POST): /reverse
+app.MapPost("/reverse", (InputText input) =>
+{
+    var reversed = new string(input.Text.Reverse().ToArray());
+    return new { Original = input.Text, Reversed = reversed };
+});
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+// For POST /reverse
+internal record InputText(string Text);
