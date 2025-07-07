@@ -36,6 +36,7 @@ app.MapGet("/add", (int a, int b) =>
     return new { Sum = a + b };
 });
 
+
 // 3. Request body (POST): /reverse
 app.MapPost("/reverse", (InputText input) =>
 {
@@ -43,11 +44,17 @@ app.MapPost("/reverse", (InputText input) =>
     return new { Original = input.Text, Reversed = reversed };
 });
 
-
 //4. Query parameter: /subtract?a=10&b=3
 app.MapGet("/subtract", (int a, int b) =>
 {
     return new { Sum = a - b };
+});
+
+
+//4. Query parameter: /multiply?a=10&b=3
+app.MapGet("/multiply", (int a, int b) =>
+{
+    return new { Sum = a * b };
 });
 
 app.Run();
