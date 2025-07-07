@@ -50,6 +50,19 @@ app.MapGet("/subtract", (int a, int b) =>
     return new { Sum = a - b };
 });
 
+
+//5 Division: /divide?a=10&b=2
+app.MapGet("/divide", (int a, int b) =>
+{
+    if (b == 0)
+    {
+        return Results.BadRequest("Division by zero is not allowed.");
+    }
+    return new { Quotient = (double)a / b };
+});
+
+
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
